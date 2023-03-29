@@ -1,0 +1,16 @@
+name = "vault-mattcraig-tech"
+workers_dev = true
+compatibility_date = "2023-03-29"
+
+send_metrics = false
+
+main = "build/worker/shim.mjs"
+
+[vars]
+WORKERS_RS_VERSION = "0.0.15"
+
+[build]
+command = "cargo install -q worker-build && worker-build --release"
+
+[env.staging]
+name = "vault-mattcraig-tech-staging"
