@@ -33,6 +33,15 @@ pub fn log_request(req: &Request) {
     );
 }
 
+pub fn log_not_present_error(bucket: &str, key: &str) {
+    console_log!(
+        "{} - [{}], key \"{}\" not present in bucket",
+        Date::now().to_string(),
+        bucket,
+        key
+    );
+}
+
 pub fn log_generic_error(key: &str, err: &str) {
     console_log!(
         "{} - [{}], received generic worker error: {}",
