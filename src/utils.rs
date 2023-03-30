@@ -1,4 +1,5 @@
 use cfg_if::cfg_if;
+use std::collections::HashMap;
 use worker::console_log;
 use worker::Date;
 use worker::Request;
@@ -40,6 +41,18 @@ pub fn log_not_present_error(bucket: &str, key: &str) {
         bucket,
         key
     );
+}
+
+pub fn log_custom_metadata(bucket: &str, key: &str, metadata: HashMap<String, String>) {
+    console_log!(
+        "{} - [{}] key \"{}\" custom metadata",
+        Date::now().to_string(),
+        bucket,
+        key
+    );
+    for (key, value) in metadata {
+        console_log!("\t-{}: {}", key, value);
+    }
 }
 
 pub fn log_generic_error(key: &str, err: &str) {

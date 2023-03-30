@@ -11,6 +11,10 @@ async fn retrieve_file_from_bucket(key: &str, env: &Env) -> Result<Response> {
     return match opt.execute().await? {
         Some(object) => {
             set_headers(object.http_metadata(), &mut headers);
+            headers.set("ETag", &object.http_etag())?;
+            if let Ok(metadata) = object.custom_metadata() {
+                utils::log_custom_metadata("FILES", key, metadata);
+            }
             Ok(Response::from_bytes(object.body().unwrap().bytes().await?)?.with_headers(headers))
         },
         None => {
