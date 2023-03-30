@@ -28,8 +28,20 @@ fn set_headers(metadata: HttpMetadata, headers: &mut Headers) {
     if let Some(content_type) = metadata.content_type {
         headers.set("Content-Type", &content_type);
     }
+    if let Some(content_language) = metadata.content_language {
+        headers.set("Content-Language", &content_language);
+    }
+    if let Some(content_disposition) = metadata.content_disposition {
+        headers.set("Content-Disposition", &content_disposition);
+    }
     if let Some(content_encoding) = metadata.content_encoding {
         headers.set("Content-Encoding", &content_encoding);
+    }
+    if let Some(cache_control) = metadata.cache_control {
+        headers.set("Cache-Control", &cache_control);
+    }
+    if let Some(cache_expiry) = metadata.cache_expiry {
+        headers.set("Content-Type", &cache_expiry.to_string());
     }
 }
 
