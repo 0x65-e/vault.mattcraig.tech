@@ -4,6 +4,9 @@ compatibility_date = "2023-03-29"
 
 send_metrics = false
 
+r2_buckets = [
+    { binding = "FILES", bucket_name = "vault-mattcraig-tech-files" }
+]
 main = "build/worker/shim.mjs"
 
 [vars]
@@ -14,3 +17,6 @@ command = "cargo install -q worker-build && worker-build --release"
 
 [env.staging]
 name = "vault-mattcraig-tech-staging"
+r2_buckets = [
+    { binding = "FILES", bucket_name = "vault-mattcraig-tech-staging-files" }
+]
